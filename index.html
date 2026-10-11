@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生字笔顺 — 小学汉字书写练习 · 动态笔顺</title>
+  <meta name="description" content="生字笔顺：把动态笔顺、描红练习、课文听写和错字本装进一个 App。每一笔按顺序演示，描红、仿写、对照三段式练字，错的字自动进错字本。">
+  <meta property="og:title" content="生字笔顺 — 一笔一画，皆有章法">
+  <meta property="og:description" content="动态笔顺 · 三段式描红 · 课文听写 · 错字本，让孩子不只认识字，更能写好字。">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#F7F2E8">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='4' y='4' width='92' height='92' rx='16' fill='%23FFFDF8' stroke='%23D0918F' stroke-width='6'/%3E%3Cline x1='50' y1='8' x2='50' y2='92' stroke='%23D0918F' stroke-width='3' stroke-dasharray='6 5'/%3E%3Cline x1='8' y1='50' x2='92' y2='50' stroke='%23D0918F' stroke-width='3' stroke-dasharray='6 5'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' fill='%23202521' font-family='Kaiti SC,serif' font-weight='bold'%3E字%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="#top" aria-label="生字笔顺 首页">
+    <span class="logo-mark">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <rect x="4" y="4" width="92" height="92" rx="16" fill="none" stroke="#D0918F" stroke-width="6"/>
+        <line x1="50" y1="8" x2="50" y2="92" stroke="#D0918F" stroke-width="3" stroke-dasharray="6 5"/>
+        <line x1="8" y1="50" x2="92" y2="50" stroke="#D0918F" stroke-width="3" stroke-dasharray="6 5"/>
+        <text x="50" y="68" font-size="50" text-anchor="middle" fill="#202521" font-family="Kaiti SC,serif" font-weight="bold">字</text>
+      </svg>
+    </span>
+    <span class="logo-text">生字笔顺</span>
+  </a>
+  <div class="nav-links">
+    <a href="#demo">动态笔顺</a>
+    <a href="#features">功能</a>
+    <a href="#vip">会员</a>
+    <a href="#download">下载</a>
+  </div>
+  <a class="btn btn-primary btn-sm" href="#download">App Store</a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-copy">
+    <span class="hero-tag">小学语文 · 汉字书写练习</span>
+    <h1>一笔一画，<br>皆有章法</h1>
+    <p class="hero-sub">「生字笔顺」把动态笔顺、描红练习、课文听写和错字本装进一个 App——不只认识字，更能写好字。</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#download">App Store 下载</a>
+      <a class="btn btn-outline" href="#demo">在线体验笔顺</a>
+    </div>
+    <ul class="hero-stats">
+      <li><strong>9000+</strong><span>汉字动态笔顺</span></li>
+      <li><strong>三段式</strong><span>描红 · 仿写 · 对照</span></li>
+      <li><strong>无广告</strong><span>让孩子专心练字</span></li>
+    </ul>
+  </div>
+  <div class="hero-stage">
+    <div class="grid-cell hero-grid">
+      <svg class="mizige" viewBox="0 0 100 100" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="97" height="97" fill="none" stroke="#D0918F" stroke-width="3"/>
+        <line x1="50" y1="0" x2="50" y2="100" stroke="#D0918F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".9"/>
+        <line x1="0" y1="50" x2="100" y2="50" stroke="#D0918F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".9"/>
+        <line x1="0" y1="0" x2="100" y2="100" stroke="#D0918F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".9"/>
+        <line x1="100" y1="0" x2="0" y2="100" stroke="#D0918F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".9"/>
+      </svg>
+      <div class="writer-host" id="hero-writer"></div>
+      <span class="hero-caption" id="hero-caption">字</span>
+    </div>
+    <div class="mini-grid mini-grid-a" aria-hidden="true">
+      <span>描</span>
+    </div>
+    <div class="mini-grid mini-grid-b" aria-hidden="true">
+      <span>听</span>
+    </div>
+    <span class="hero-stage-label">动态笔顺 · 正在演示</span>
+  </div>
+</header>
+
+<main>
+
+<section id="demo" class="section">
+  <div class="section-head">
+    <h2>动态笔顺，亲手试试</h2>
+    <p>输入任意汉字，看它一笔一笔写出来；点「描红练习」还可以跟着写。<br>官网演示与 App 内使用同一份开源笔顺数据。</p>
+  </div>
+  <div class="playground">
+    <div class="pg-main">
+      <div class="grid-cell demo-grid">
+        <svg class="mizige" viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="1.5" y="1.5" width="97" height="97" fill="none" stroke="#D0918F" stroke-width="3"/>
+          <line x1="50" y1="0" x2="50" y2="100" stroke="#D0918F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".9"/>
+          <line x1="0" y1="50" x2="100" y2="50" stroke="#D0918F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".9"/>
+          <line x1="0" y1="0" x2="100" y2="100" stroke="#D0918F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".9"/>
+          <line x1="100" y1="0" x2="0" y2="100" stroke="#D0918F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".9"/>
+        </svg>
+        <div class="writer-host" id="demo-writer"></div>
+      </div>
+      <div class="pg-side">
+        <div class="pg-char kai" id="demo-char">永</div>
+        <div class="pg-strokes" id="demo-strokes">—</div>
+        <div class="pg-status" id="demo-status">正在加载笔顺数据…</div>
+        <p class="pg-tip">「描红练习」会高亮下一笔，用鼠标或手指照着写一笔；<br>在触屏设备上体验更佳。</p>
+      </div>
+    </div>
+    <div class="pg-controls">
+      <div class="pg-input-wrap">
+        <input id="char-input" type="text" maxlength="1" placeholder="输入一个汉字" aria-label="输入要演示的汉字">
+        <div class="chips" id="chips">
+          <button data-char="永">永</button>
+          <button data-char="一">一</button>
+          <button data-char="二">二</button>
+          <button data-char="三">三</button>
+          <button data-char="十">十</button>
+          <button data-char="木">木</button>
+          <button data-char="大">大</button>
+          <button data-char="人">人</button>
+          <button data-char="口">口</button>
+          <button data-char="中">中</button>
+          <button data-char="日">日</button>
+        </div>
+      </div>
+      <div class="pg-buttons">
+        <button class="btn btn-primary" id="btn-play">播放笔顺</button>
+        <button class="btn btn-outline" id="btn-trace">描红练习</button>
+        <button class="btn btn-ghost" id="btn-reset">重来</button>
+      </div>
+    </div>
+    <p class="pg-note">笔顺数据来自开源项目 hanzi-writer-data · 部分生僻字暂无数据</p>
+  </div>
+</section>
+
+<section id="features" class="section">
+  <div class="section-head">
+    <h2>让练字这件事，有条有理</h2>
+    <p>从「看清楚怎么写」到「离开范字也会写」，每一步都有章法。</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-glyph g-jade kai">顺</span>
+      <h3>动态笔顺演示</h3>
+      <p>每一笔按顺序高亮演示，速度可调、可循环。笔画与范字同源，动画与字形完全重合。</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-glyph g-blue kai">描</span>
+      <h3>三段式描红</h3>
+      <p>描红、仿写、对照，一步一步脱离范字；对照过关，才算真正掌握这个字。</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-glyph g-gold kai">听</span>
+      <h3>课文听写</h3>
+      <p>按课本字词报读，写完自动批改笔顺，错的字自动收进错字本。</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-glyph g-cinnabar kai">错</span>
+      <h3>错字本</h3>
+      <p>待订正、复习中、已掌握三档管理，专治「总写错的那几个字」。</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-glyph g-jade kai">课</span>
+      <h3>课本同步</h3>
+      <p>识字表、词语表跟着课本走（首发一年级上册，更多教材陆续更新）。</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-glyph g-gold kai">报</span>
+      <h3>练字报告</h3>
+      <p>连续学习打卡、掌握率统计，孩子的进步看得见。</p>
+    </div>
+  </div>
+</section>
+
+<section id="vip" class="section">
+  <div class="section-head">
+    <h2>升级 VIP 会员</h2>
+    <p>一次订阅，解锁全部练字能力。</p>
+  </div>
+  <div class="vip-wrap">
+    <ul class="benefits">
+      <li><span class="check">✓</span>全部课本随心学</li>
+      <li><span class="check">✓</span>描红练习不限次</li>
+      <li><span class="check">✓</span>字帖导出和打印</li>
+      <li><span class="check">✓</span>高级朗读功能</li>
+      <li><span class="check">✓</span>听写功能抢先体验</li>
+      <li><span class="check">✓</span>错字本云端同步</li>
+      <li><span class="check">✓</span>专属练字报告</li>
+      <li><span class="check">✓</span>练字全程无广告</li>
+    </ul>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-name">连续包月</div>
+        <div class="plan-price">¥6<span>/月</span></div>
+        <div class="plan-original">原价 ¥12/月</div>
+      </div>
+      <div class="plan plan-best">
+        <span class="plan-badge">更划算</span>
+        <div class="plan-name">连续包年</div>
+        <div class="plan-price">¥30<span>/年</span></div>
+        <div class="plan-original">原价 ¥60/年</div>
+      </div>
+    </div>
+  </div>
+  <p class="vip-fineprint">订阅通过 App Store 内购结算，可随时在系统设置中取消续订；价格以 App 内展示为准。</p>
+</section>
+
+<section id="download" class="section">
+  <div class="dl-card">
+    <div class="dl-stage" aria-hidden="true">
+      <div class="grid-cell dl-grid">
+        <svg class="mizige" viewBox="0 0 100 100">
+          <rect x="1.5" y="1.5" width="97" height="97" fill="none" stroke="#D0918F" stroke-width="3"/>
+          <line x1="50" y1="0" x2="50" y2="100" stroke="#D0918F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".9"/>
+          <line x1="0" y1="50" x2="100" y2="50" stroke="#D0918F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".9"/>
+          <line x1="0" y1="0" x2="100" y2="100" stroke="#D0918F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".9"/>
+          <line x1="100" y1="0" x2="0" y2="100" stroke="#D0918F" stroke-width="1.5" stroke-dasharray="4 3" opacity=".9"/>
+        </svg>
+        <span class="dl-char kai">永</span>
+      </div>
+    </div>
+    <div class="dl-copy">
+      <h2>让孩子今天就开始写好字</h2>
+      <p>每天十分钟，跟着课本，一笔一画把字写端正。</p>
+      <!-- TODO: App 上架后替换为真实 App Store 链接 -->
+      <a class="btn btn-primary btn-lg" href="#" id="appstore-link">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+        App Store 下载
+      </a>
+      <p class="dl-fineprint">需要 iOS 16.6 或更高版本 · iPhone / iPad 均可使用</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 生字笔顺 ZiYouZhangFa</p>
+  <p>笔顺数据来自开源项目 <a href="https://github.com/chanind/hanzi-writer-data" target="_blank" rel="noopener">hanzi-writer-data</a> / Make Me a Hanzi，字形基于 Arphic 公共授权字体</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer/dist/hanzi-writer.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
