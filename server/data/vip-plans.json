@@ -1,0 +1,23 @@
+{
+  "currency": "CNY",
+  "paymentChannel": "iap",
+  "note": "订阅通过 App Store 内购结算，可随时在系统设置中取消续订；价格以 App 内展示为准。",
+  "plans": [
+    {
+      "id": "monthly",
+      "name": "连续包月",
+      "price": 6,
+      "originalPrice": 12,
+      "periodUnit": "月",
+      "badge": null
+    },
+    {
+      "id": "yearly",
+      "name": "连续包年",
+      "price": 30,
+      "originalPrice": 60,
+      "periodUnit": "年",
+      "badge": "更划算"
+    }
+  ]
+}

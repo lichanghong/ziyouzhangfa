@@ -1,8 +1,8 @@
 {
-  "name": "nuxt-template",
+  "name": "shengzi-bishun-website",
   "installCommand": "npm install",
   "assets": {
-    "directory": "./dist",
+    "directory": "./.output/public",
     "notFoundStrategy": "404Page"
   }
 }
