@@ -92,7 +92,8 @@ async function setChar(char: string) {
     if (!data) throw new Error('no data')
     strokesText.value = `共 ${data.strokes.length} 笔`
     if (!host.value) return
-    writer = HanziWriter.create(host.value, char, writerOptions({ showOutline: true }))
+    writer = await createWriter(host.value, char, { showOutline: true })
+    if (disposed || seq !== reqSeq) return
     play()
   } catch {
     if (disposed || seq !== reqSeq) return

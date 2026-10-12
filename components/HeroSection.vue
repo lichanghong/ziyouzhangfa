@@ -48,16 +48,11 @@ async function playHero() {
   caption.value = char
   host.value.innerHTML = ''
 
-  const HanziWriter = await loadHanziWriter()
+  const writer = await createWriter(host.value, char, {
+    strokeAnimationSpeed: 1,
+    delayBetweenStrokes: 340
+  })
   if (disposed || !host.value) return
-  const writer = HanziWriter.create(
-    host.value,
-    char,
-    writerOptions({
-      strokeAnimationSpeed: 1,
-      delayBetweenStrokes: 340
-    })
-  )
 
   if (reducedMotion) {
     writer.showCharacter()
