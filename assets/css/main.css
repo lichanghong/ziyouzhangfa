@@ -479,49 +479,25 @@ a { color: inherit; }
   flex: none;
 }
 
-.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-.plan {
-  position: relative;
+.vip-cta {
   background: var(--paper);
-  border: 2px solid var(--line);
+  border: 2px solid var(--jade);
   border-radius: var(--radius-card);
-  padding: 26px 18px 22px;
+  padding: 36px 26px 32px;
   text-align: center;
 }
 
-.plan-best { border-color: var(--jade); background: #F4F8F3; }
-
-.plan-badge {
-  position: absolute;
-  top: -13px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--gold);
-  color: #fff;
-  font-size: 12px;
+.vip-cta-title {
+  font-size: 17px;
   font-weight: 700;
-  padding: 3px 14px;
-  border-radius: 999px;
-  box-shadow: 0 4px 10px rgba(217, 164, 65, .4);
-  white-space: nowrap;
-}
-
-.plan-name { font-size: 14px; font-weight: 600; color: var(--ink2); margin-bottom: 8px; }
-
-.plan-price {
-  font-size: 34px;
-  font-weight: 800;
   color: var(--ink);
-  letter-spacing: -1px;
+  margin-bottom: 10px;
 }
-.plan-price span { font-size: 14px; font-weight: 600; color: var(--ink2); letter-spacing: 0; }
 
-.plan-original {
-  margin-top: 6px;
-  font-size: 13px;
+.vip-cta-desc {
+  font-size: 14px;
   color: var(--ink2);
-  text-decoration: line-through;
+  margin-bottom: 24px;
 }
 
 .vip-fineprint {

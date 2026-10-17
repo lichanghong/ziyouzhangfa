@@ -8,26 +8,18 @@
       <ul class="benefits">
         <li v-for="b in benefits" :key="b"><span class="check">✓</span>{{ b }}</li>
       </ul>
-      <div v-if="plansData" class="plans">
-        <div
-          v-for="plan in plansData.plans"
-          :key="plan.id"
-          class="plan"
-          :class="{ 'plan-best': plan.badge }"
-        >
-          <span v-if="plan.badge" class="plan-badge">{{ plan.badge }}</span>
-          <div class="plan-name">{{ plan.name }}</div>
-          <div class="plan-price">¥{{ plan.price }}<span>/{{ plan.periodUnit }}</span></div>
-          <div class="plan-original">原价 ¥{{ plan.originalPrice }}/{{ plan.periodUnit }}</div>
-        </div>
+      <div class="vip-cta">
+        <div class="vip-cta-title">VIP 会员在 App 内升级</div>
+        <p class="vip-cta-desc">会员价格与订阅方式，以 App 内展示为准。</p>
+        <a class="btn btn-primary btn-lg" :href="appConfig?.downloadUrl || '#download'">前往 App 升级 VIP</a>
       </div>
     </div>
-    <p class="vip-fineprint">{{ plansData?.note ?? '订阅通过 App Store 内购结算，可随时在系统设置中取消续订；价格以 App 内展示为准。' }}</p>
+    <p class="vip-fineprint">订阅通过 App Store 内购结算，可随时在系统设置中取消续订。</p>
   </section>
 </template>
 
 <script setup lang="ts">
-import type { VipPlans } from '~/types/api'
+import type { AppConfig } from '~/types/api'
 
 const benefits = [
   '全部课本随心学',
@@ -40,5 +32,5 @@ const benefits = [
   '练字全程无广告'
 ]
 
-const { data: plansData } = await useFetch<VipPlans>('/api/v1/vip/plans')
+const { data: appConfig } = await useFetch<AppConfig>('/api/v1/app-config', { method: 'POST' })
 </script>

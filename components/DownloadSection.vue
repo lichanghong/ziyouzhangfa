@@ -23,5 +23,5 @@
 <script setup lang="ts">
 import type { AppConfig } from '~/types/api'
 
-const { data: appConfig } = await useFetch<AppConfig>('/api/v1/app-config')
+const { data: appConfig } = await useFetch<AppConfig>('/api/v1/app-config', { method: 'POST' })
 </script>

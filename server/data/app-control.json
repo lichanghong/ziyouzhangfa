@@ -1,0 +1,10 @@
+{
+  "platform": "ios",
+  "note": "default 为全部版本生效的默认控制字段；versions 按版本号精确匹配，命中版本的同名字段覆盖 default。App 端取 versions[当前版本] 与 default 合并后使用。送审时在 versions 中给送审版本设置 underReview: true（并按需收敛 showAds 等展示字段），过审上架后将该条目改回 false 或删除，重新构建部署即切换为正式内容。",
+  "default": {
+    "underReview": false,
+    "showAds": false,
+    "maintenance": false
+  },
+  "versions": {}
+}
