@@ -1,6 +1,3 @@
-import { writeFileSync, mkdirSync } from 'node:fs'
-import { join } from 'node:path'
-
 export default defineNuxtConfig({
   devtools: { enabled: true },
   typescript: {
@@ -9,26 +6,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       underReview: process.env.underReview === '1' || process.env.underReview === 'true'
-    }
-  },
-  hooks: {
-    'build:done': () => {
-      const underReview = process.env.underReview === '1' || process.env.underReview === 'true'
-      const config = {
-        platform: 'ios',
-        latestVersion: '1.0.0',
-        minSupportedVersion: '1.0.0',
-        downloadUrl: '',
-        releaseNotes: '首发版本。',
-        forcedUpdate: false,
-        underReview
-      }
-      const json = JSON.stringify(config, null, 2)
-      // 写到 public/ 源码目录，nuxt generate 会自动复制到 .output/public/
-      // ESA Pages 静态资源目录为 /，直接读仓库根目录下的 public/
-      const srcDir = join(process.cwd(), 'public')
-      mkdirSync(srcDir, { recursive: true })
-      writeFileSync(join(srcDir, 'app-config.json'), json)
     }
   },
   app: {
