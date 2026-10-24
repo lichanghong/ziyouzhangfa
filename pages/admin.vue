@@ -43,8 +43,20 @@
 <script setup lang="ts">
 definePageMeta({ layout: false })
 
-const config = useRuntimeConfig()
-const underReview = ref(config.public.underReview as boolean)
+const underReview = ref(false)
+const loading = ref(true)
+const error = ref('')
+
+onMounted(async () => {
+  try {
+    const res = await $fetch<{ underReview: boolean }>('/api/v1/app-config')
+    underReview.value = res.underReview
+  } catch (e) {
+    error.value = '加载状态失败'
+  } finally {
+    loading.value = false
+  }
+})
 </script>
 
 <style scoped>
