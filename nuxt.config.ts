@@ -23,9 +23,12 @@ export default defineNuxtConfig({
         forcedUpdate: false,
         underReview
       }
-      const outDir = join(process.cwd(), '.output/public/api/v1')
-      mkdirSync(outDir, { recursive: true })
-      writeFileSync(join(outDir, 'app-config.json'), JSON.stringify(config, null, 2))
+      const json = JSON.stringify(config, null, 2)
+      // 写到 public/ 源码目录，nuxt generate 会自动复制到 .output/public/
+      // ESA Pages 静态资源目录为 /，直接读仓库根目录下的 public/
+      const srcDir = join(process.cwd(), 'public/api/v1')
+      mkdirSync(srcDir, { recursive: true })
+      writeFileSync(join(srcDir, 'app-config.json'), json)
     }
   },
   app: {
