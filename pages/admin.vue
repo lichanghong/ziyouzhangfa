@@ -59,7 +59,7 @@ const copied = ref(false)
 onMounted(async () => {
   try {
     const res = await $fetch<{ underReview: boolean }>(
-      '/api/v1/app-config.json'
+      '/app-config.json'
     )
     underReview.value = res.underReview
   } catch (e) {
