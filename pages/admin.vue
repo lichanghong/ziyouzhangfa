@@ -172,7 +172,6 @@ function formatTime(iso: string | null): string {
   font-weight: 500;
 }
 
-/* Toggle */
 .toggle {
   position: relative;
   display: inline-block;
@@ -221,7 +220,6 @@ function formatTime(iso: string | null): string {
   opacity: 0.6;
 }
 
-/* Status */
 .status-bar {
   display: flex;
   align-items: center;

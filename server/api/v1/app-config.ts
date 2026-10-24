@@ -13,12 +13,10 @@ const defaultConfig = {
 export default defineEventHandler(async (event: H3Event) => {
   setResponseHeader(event, 'Access-Control-Allow-Origin', '*')
 
-  // ESA Pages 环境：从 cloudflare env 读 KV
   const env = (event.context as any).cloudflare?.env || process.env
   const kv = env?.BISHUN_KV
 
   if (!kv) {
-    // 本地开发或无 KV 绑定，返回默认值
     return defaultConfig
   }
 
