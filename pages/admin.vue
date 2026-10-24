@@ -6,44 +6,36 @@
         <p class="subtitle">App 全局配置管理</p>
       </div>
 
-      <div v-if="loading" class="loading">加载中...</div>
-
-      <div v-else>
-        <div class="control-section">
-          <div class="control-row">
-            <div class="control-info">
-              <div class="control-label">送审模式</div>
-              <div class="control-desc">
-                开启后 App 将处于<strong>非上线阶段</strong>，不展示广告
-              </div>
-            </div>
-            <div class="status-badge" :class="underReview ? 'is-review' : 'is-live'">
-              {{ underReview ? '开启' : '关闭' }}
+      <div class="control-section">
+        <div class="control-row">
+          <div class="control-info">
+            <div class="control-label">送审模式</div>
+            <div class="control-desc">
+              开启后 App 将处于<strong>非上线阶段</strong>，不展示广告
             </div>
           </div>
-
-          <div class="status-bar">
-            <span class="status-dot" :class="underReview ? 'is-review' : 'is-live'" />
-            <span class="status-text">
-              {{ underReview ? '非上线阶段 — 广告不展示' : '已上线 — 广告正常展示' }}
-            </span>
+          <div class="status-badge" :class="underReview ? 'is-review' : 'is-live'">
+            {{ underReview ? '开启' : '关闭' }}
           </div>
         </div>
 
-        <div class="help-section">
-          <div class="help-title">如何切换状态</div>
-          <ol class="help-steps">
-            <li>编辑项目中的 <code>public/api/v1/app-config.json</code></li>
-            <li>把 <code>"underReview"</code> 改为 <code>{{ underReview ? 'false' : 'true' }}</code></li>
-            <li>提交并推送代码，ESA 自动部署后生效</li>
-          </ol>
-          <div class="copy-btn" @click="copyCommand">
-            {{ copied ? '已复制' : '复制命令' }}
-          </div>
+        <div class="status-bar">
+          <span class="status-dot" :class="underReview ? 'is-review' : 'is-live'" />
+          <span class="status-text">
+            {{ underReview ? '非上线阶段 — 广告不展示' : '已上线 — 广告正常展示' }}
+          </span>
         </div>
       </div>
 
-      <p v-if="error" class="error-msg">{{ error }}</p>
+      <div class="help-section">
+        <div class="help-title">如何切换状态</div>
+        <ol class="help-steps">
+          <li>在 ESA 控制台 → 函数和 Pages → ziyouzhangfa → 基本信息</li>
+          <li>找到「函数变量」区域，修改 <code>underReview</code> 的值</li>
+          <li><code>1</code> = 开启（送审中），<code>0</code> = 关闭（已上线）</li>
+          <li>保存后重新部署即可生效</li>
+        </ol>
+      </div>
     </div>
   </div>
 </template>
@@ -51,32 +43,8 @@
 <script setup lang="ts">
 definePageMeta({ layout: false })
 
-const underReview = ref(false)
-const loading = ref(true)
-const error = ref('')
-const copied = ref(false)
-
-onMounted(async () => {
-  try {
-    const res = await $fetch<{ underReview: boolean }>(
-      '/app-config.json'
-    )
-    underReview.value = res.underReview
-  } catch (e) {
-    error.value = '加载状态失败'
-  } finally {
-    loading.value = false
-  }
-})
-
-function copyCommand() {
-  const val = underReview.value ? 'false' : 'true'
-  const cmd = `cd website && sed -i '' 's/"underReview": .*/"underReview": ${val}/' public/api/v1/app-config.json && git add -A && git commit -m "config: underReview=${val}" && git push`
-  navigator.clipboard.writeText(cmd).then(() => {
-    copied.value = true
-    setTimeout(() => { copied.value = false }, 2000)
-  })
-}
+const config = useRuntimeConfig()
+const underReview = ref(config.public.underReview as boolean)
 </script>
 
 <style scoped>
@@ -110,13 +78,6 @@ function copyCommand() {
   font-size: 14px;
   color: #999;
   margin: 0 0 32px;
-}
-
-.loading {
-  text-align: center;
-  color: #999;
-  padding: 32px 0;
-  font-size: 14px;
 }
 
 .control-section {
@@ -229,22 +190,6 @@ function copyCommand() {
   border-radius: 4px;
   font-size: 12px;
   color: #333;
-}
-
-.copy-btn {
-  margin-top: 12px;
-  padding: 8px 16px;
-  background: #1a1a1a;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 13px;
-  cursor: pointer;
-  display: inline-block;
-}
-
-.copy-btn:hover {
-  background: #333;
 }
 
 .error-msg {

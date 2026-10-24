@@ -3,6 +3,11 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: false
   },
+  runtimeConfig: {
+    public: {
+      underReview: process.env.underReview === '1' || process.env.underReview === 'true'
+    }
+  },
   app: {
     head: {
       htmlAttrs: { lang: 'zh-CN' },
@@ -23,9 +28,5 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]
     }
   },
-  css: ['~/assets/css/main.css'],
-  routeRules: {
-    '/api/v1/app-config': { cors: true },
-    '/api/v1/hello-world': { prerender: true }
-  }
+  css: ['~/assets/css/main.css']
 })
