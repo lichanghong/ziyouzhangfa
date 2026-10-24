@@ -8,40 +8,39 @@
 
       <div v-if="loading" class="loading">加载中...</div>
 
-      <div v-else class="control-section">
-        <div class="control-row">
-          <div class="control-info">
-            <div class="control-label">送审模式</div>
-            <div class="control-desc">
-              开启后 App 将处于<strong>非上线阶段</strong>，不展示广告
+      <div v-else>
+        <div class="control-section">
+          <div class="control-row">
+            <div class="control-info">
+              <div class="control-label">送审模式</div>
+              <div class="control-desc">
+                开启后 App 将处于<strong>非上线阶段</strong>，不展示广告
+              </div>
+            </div>
+            <div class="status-badge" :class="underReview ? 'is-review' : 'is-live'">
+              {{ underReview ? '开启' : '关闭' }}
             </div>
           </div>
-          <label class="toggle">
-            <input
-              type="checkbox"
-              :checked="underReview"
-              :disabled="saving"
-              @change="onToggle"
-            />
-            <span class="toggle-track">
-              <span class="toggle-thumb" />
+
+          <div class="status-bar">
+            <span class="status-dot" :class="underReview ? 'is-review' : 'is-live'" />
+            <span class="status-text">
+              {{ underReview ? '非上线阶段 — 广告不展示' : '已上线 — 广告正常展示' }}
             </span>
-          </label>
+          </div>
         </div>
 
-        <div class="status-bar">
-          <span
-            class="status-dot"
-            :class="underReview ? 'is-review' : 'is-live'"
-          />
-          <span class="status-text">
-            {{ underReview ? '非上线阶段 — 广告不展示' : '已上线 — 广告正常展示' }}
-          </span>
+        <div class="help-section">
+          <div class="help-title">如何切换状态</div>
+          <ol class="help-steps">
+            <li>编辑项目中的 <code>public/api/v1/app-config.json</code></li>
+            <li>把 <code>"underReview"</code> 改为 <code>{{ underReview ? 'false' : 'true' }}</code></li>
+            <li>提交并推送代码，ESA 自动部署后生效</li>
+          </ol>
+          <div class="copy-btn" @click="copyCommand">
+            {{ copied ? '已复制' : '复制命令' }}
+          </div>
         </div>
-
-        <p v-if="updatedAt" class="updated-time">
-          最后更新：{{ formatTime(updatedAt) }}
-        </p>
       </div>
 
       <p v-if="error" class="error-msg">{{ error }}</p>
@@ -53,18 +52,16 @@
 definePageMeta({ layout: false })
 
 const underReview = ref(false)
-const updatedAt = ref<string | null>(null)
 const loading = ref(true)
-const saving = ref(false)
 const error = ref('')
+const copied = ref(false)
 
 onMounted(async () => {
   try {
-    const res = await $fetch<{ underReview: boolean; updatedAt?: string }>(
-      '/api/v1/app-config'
+    const res = await $fetch<{ underReview: boolean }>(
+      '/api/v1/app-config.json'
     )
     underReview.value = res.underReview
-    updatedAt.value = res.updatedAt
   } catch (e) {
     error.value = '加载状态失败'
   } finally {
@@ -72,28 +69,13 @@ onMounted(async () => {
   }
 })
 
-async function onToggle(e: Event) {
-  const val = (e.target as HTMLInputElement).checked
-  saving.value = true
-  error.value = ''
-  try {
-    const res = await $fetch<{ underReview: boolean; updatedAt?: string }>(
-      '/api/v1/app-config',
-      { method: 'PUT', body: { underReview: val } }
-    )
-    underReview.value = res.underReview
-    updatedAt.value = res.updatedAt
-  } catch {
-    ;(e.target as HTMLInputElement).checked = !val
-    error.value = '更新失败，请重试'
-  } finally {
-    saving.value = false
-  }
-}
-
-function formatTime(iso: string | null): string {
-  if (!iso) return ''
-  return new Date(iso).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })
+function copyCommand() {
+  const val = underReview.value ? 'false' : 'true'
+  const cmd = `cd website && sed -i '' 's/"underReview": .*/"underReview": ${val}/' public/api/v1/app-config.json && git add -A && git commit -m "config: underReview=${val}" && git push`
+  navigator.clipboard.writeText(cmd).then(() => {
+    copied.value = true
+    setTimeout(() => { copied.value = false }, 2000)
+  })
 }
 </script>
 
@@ -172,52 +154,22 @@ function formatTime(iso: string | null): string {
   font-weight: 500;
 }
 
-.toggle {
-  position: relative;
-  display: inline-block;
-  width: 52px;
-  height: 32px;
+.status-badge {
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
   flex-shrink: 0;
-  cursor: pointer;
 }
 
-.toggle input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-  position: absolute;
+.status-badge.is-live {
+  background: #e8f8ee;
+  color: #2d8a4e;
 }
 
-.toggle-track {
-  position: absolute;
-  inset: 0;
-  background: #e0e0e0;
-  border-radius: 16px;
-  transition: background 0.25s ease;
-}
-
-.toggle input:checked + .toggle-track {
-  background: #4cd964;
-}
-
-.toggle-thumb {
-  position: absolute;
-  width: 26px;
-  height: 26px;
-  left: 3px;
-  top: 3px;
-  background: #fff;
-  border-radius: 50%;
-  transition: transform 0.25s ease;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-}
-
-.toggle input:checked + .toggle-track .toggle-thumb {
-  transform: translateX(20px);
-}
-
-.toggle input:disabled + .toggle-track {
-  opacity: 0.6;
+.status-badge.is-review {
+  background: #fff4e5;
+  color: #d48806;
 }
 
 .status-bar {
@@ -249,10 +201,50 @@ function formatTime(iso: string | null): string {
   color: #666;
 }
 
-.updated-time {
+.help-section {
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.help-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+}
+
+.help-steps {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #666;
+  line-height: 2;
+}
+
+.help-steps code {
+  background: #eee;
+  padding: 1px 6px;
+  border-radius: 4px;
   font-size: 12px;
-  color: #bbb;
-  margin: 12px 0 0;
+  color: #333;
+}
+
+.copy-btn {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.copy-btn:hover {
+  background: #333;
 }
 
 .error-msg {
