@@ -1,3 +1,6 @@
+import { writeFileSync, mkdirSync } from 'node:fs'
+import { join } from 'node:path'
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   typescript: {
@@ -6,6 +9,23 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       underReview: process.env.underReview === '1' || process.env.underReview === 'true'
+    }
+  },
+  hooks: {
+    'build:done': () => {
+      const underReview = process.env.underReview === '1' || process.env.underReview === 'true'
+      const config = {
+        platform: 'ios',
+        latestVersion: '1.0.0',
+        minSupportedVersion: '1.0.0',
+        downloadUrl: '',
+        releaseNotes: '首发版本。',
+        forcedUpdate: false,
+        underReview
+      }
+      const outDir = join(process.cwd(), '.output/public/api/v1')
+      mkdirSync(outDir, { recursive: true })
+      writeFileSync(join(outDir, 'app-config.json'), JSON.stringify(config, null, 2))
     }
   },
   app: {
