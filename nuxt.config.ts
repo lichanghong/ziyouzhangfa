@@ -25,8 +25,7 @@ export default defineNuxtConfig({
   },
   css: ['~/assets/css/main.css'],
   routeRules: {
-    '/api/v1/app-config': { prerender: true },
-    '/api/v1/app-control': { prerender: true },
+    '/api/v1/app-config': { cors: true },
     '/api/v1/hello-world': { prerender: true }
   }
 })
