@@ -18,7 +18,7 @@
       <div class="help-section">
         <div class="help-title">查看当前状态</div>
         <ol class="help-steps">
-          <li>运行解密脚本：<code>./scripts/encrypt.sh -d public/api/v1/app-config.json /tmp/config.json</code></li>
+          <li>运行解密脚本：<code>./scripts/encrypt.sh -d public/api/v1/app-config.png /tmp/config.json</code></li>
           <li>查看解密结果：<code>cat /tmp/config.json</code></li>
         </ol>
       </div>
@@ -26,9 +26,9 @@
       <div class="help-section">
         <div class="help-title">切换状态</div>
         <ol class="help-steps">
-          <li>先解密：<code>./scripts/encrypt.sh -d public/api/v1/app-config.json /tmp/config.json</code></li>
+          <li>先解密：<code>./scripts/encrypt.sh -d public/api/v1/app-config.png /tmp/config.json</code></li>
           <li>编辑 <code>/tmp/config.json</code>，修改 <code>"underReview"</code> 为 <code>true</code>（送审中）或 <code>false</code>（已上线）</li>
-          <li>重新加密：<code>./scripts/encrypt.sh /tmp/config.json public/api/v1/app-config.json</code></li>
+          <li>重新加密：<code>./scripts/encrypt.sh /tmp/config.json public/api/v1/app-config.png</code></li>
           <li>提交并推送代码，ESA 自动部署后生效</li>
         </ol>
       </div>
