@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: false
   },
+  routeRules: {
+    '/api/v1/app-config': { prerender: true }
+  },
   app: {
     head: {
       htmlAttrs: { lang: 'zh-CN' },
