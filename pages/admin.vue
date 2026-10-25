@@ -7,31 +7,28 @@
       </div>
 
       <div class="control-section">
-        <div class="control-row">
-          <div class="control-info">
-            <div class="control-label">送审模式</div>
-            <div class="control-desc">
-              开启后 App 将处于<strong>非上线阶段</strong>，不展示广告
-            </div>
+        <div class="control-info">
+          <div class="control-label">送审模式配置</div>
+          <div class="control-desc">
+            配置文件已加密存储，请通过以下方式查看/修改状态
           </div>
-          <div class="status-badge" :class="underReview ? 'is-review' : 'is-live'">
-            {{ underReview ? '开启' : '关闭' }}
-          </div>
-        </div>
-
-        <div class="status-bar">
-          <span class="status-dot" :class="underReview ? 'is-review' : 'is-live'" />
-          <span class="status-text">
-            {{ underReview ? '非上线阶段 — 广告不展示' : '已上线 — 广告正常展示' }}
-          </span>
         </div>
       </div>
 
       <div class="help-section">
-        <div class="help-title">如何切换状态</div>
+        <div class="help-title">查看当前状态</div>
         <ol class="help-steps">
-          <li>编辑 <code>public/api/v1/app-config.json</code></li>
-          <li>把 <code>"underReview"</code> 改为 <code>{{ underReview ? 'false' : 'true' }}</code></li>
+          <li>运行解密脚本：<code>./scripts/encrypt.sh -d public/api/v1/app-config.json /tmp/config.json</code></li>
+          <li>查看解密结果：<code>cat /tmp/config.json</code></li>
+        </ol>
+      </div>
+
+      <div class="help-section">
+        <div class="help-title">切换状态</div>
+        <ol class="help-steps">
+          <li>先解密：<code>./scripts/encrypt.sh -d public/api/v1/app-config.json /tmp/config.json</code></li>
+          <li>编辑 <code>/tmp/config.json</code>，修改 <code>"underReview"</code> 为 <code>true</code>（送审中）或 <code>false</code>（已上线）</li>
+          <li>重新加密：<code>./scripts/encrypt.sh /tmp/config.json public/api/v1/app-config.json</code></li>
           <li>提交并推送代码，ESA 自动部署后生效</li>
         </ol>
       </div>
@@ -41,21 +38,6 @@
 
 <script setup lang="ts">
 definePageMeta({ layout: false })
-
-const underReview = ref(false)
-const loading = ref(true)
-const error = ref('')
-
-onMounted(async () => {
-  try {
-    const res = await $fetch<{ underReview: boolean }>('/api/v1/app-config.json')
-    underReview.value = res.underReview
-  } catch (e) {
-    error.value = '加载状态失败'
-  } finally {
-    loading.value = false
-  }
-})
 </script>
 
 <style scoped>
