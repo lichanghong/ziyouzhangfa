@@ -3,11 +3,6 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: false
   },
-  runtimeConfig: {
-    public: {
-      underReview: process.env.underReview === '1' || process.env.underReview === 'true'
-    }
-  },
   app: {
     head: {
       htmlAttrs: { lang: 'zh-CN' },
