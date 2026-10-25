@@ -30,10 +30,9 @@
       <div class="help-section">
         <div class="help-title">如何切换状态</div>
         <ol class="help-steps">
-          <li>在 ESA 控制台 → 函数和 Pages → ziyouzhangfa → 基本信息</li>
-          <li>找到「函数变量」区域，修改 <code>underReview</code> 的值</li>
-          <li><code>1</code> = 开启（送审中），<code>0</code> = 关闭（已上线）</li>
-          <li>保存后重新部署即可生效</li>
+          <li>编辑 <code>public/api/v1/app-config.json</code></li>
+          <li>把 <code>"underReview"</code> 改为 <code>{{ underReview ? 'false' : 'true' }}</code></li>
+          <li>提交并推送代码，ESA 自动部署后生效</li>
         </ol>
       </div>
     </div>
@@ -49,7 +48,7 @@ const error = ref('')
 
 onMounted(async () => {
   try {
-    const res = await $fetch<{ underReview: boolean }>('/api/v1/app-config')
+    const res = await $fetch<{ underReview: boolean }>('/api/v1/app-config.json')
     underReview.value = res.underReview
   } catch (e) {
     error.value = '加载状态失败'
