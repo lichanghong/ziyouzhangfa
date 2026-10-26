@@ -27,6 +27,13 @@ https://bishun.hehuoya.com/api/app-config-{version}.png
 2. 加密：`./scripts/encrypt.sh /tmp/config-{version}.json public/api/app-config-{version}.png`
 3. `git push`，ESA 自动部署
 
+## 密钥管理
+
+- 加密脚本 `scripts/encrypt.sh` 内含 AES-256-CBC 密钥，已被 `.gitignore` 排除，**仅存在于本地，严禁提交或外传**
+- iOS App（ZiYouZhangFa 工程 `ZYFAppConfigService.m` 中的 `kAESKey`/`kAESIV` 字节数组）与脚本内密钥保持一致
+- 轮换密钥：脚本和 iOS 端同步改为新密钥，并重新加密 `public/api/` 下所有配置文件
+- 生成新密钥：`openssl rand -hex 32`（KEY）/ `openssl rand -hex 16`（IV）
+
 ## 优缺点
 
 - ✅ 每个版本独立配置，互不影响，可单独更新某版本配置

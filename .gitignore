@@ -22,6 +22,9 @@ lerna-debug.log*
 .fleet
 .idea
 
+# 加密脚本（内含 AES 密钥，仅保留在本地，严禁提交）
+scripts/encrypt.sh
+
 # Local env files
 .env
 .env.*

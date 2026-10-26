@@ -10,7 +10,7 @@
         <div class="control-info">
           <div class="control-label">送审模式配置</div>
           <div class="control-desc">
-            配置文件已加密存储，请通过以下方式查看/修改状态
+            配置文件已加密存储（AES-256-CBC）。加密脚本 <code>scripts/encrypt.sh</code> 含密钥、已 gitignore 排除，仅存在于本地
           </div>
         </div>
       </div>
@@ -18,7 +18,7 @@
       <div class="help-section">
         <div class="help-title">查看当前状态</div>
         <ol class="help-steps">
-          <li>运行解密脚本：<code>./scripts/encrypt.sh -d public/api/app-config.png /tmp/config.json</code></li>
+          <li>运行解密脚本：<code>./scripts/encrypt.sh -d public/api/app-config-1.0.0.png /tmp/config.json</code></li>
           <li>查看解密结果：<code>cat /tmp/config.json</code></li>
         </ol>
       </div>
@@ -26,9 +26,9 @@
       <div class="help-section">
         <div class="help-title">切换状态</div>
         <ol class="help-steps">
-          <li>先解密：<code>./scripts/encrypt.sh -d public/api/app-config.png /tmp/config.json</code></li>
+          <li>先解密：<code>./scripts/encrypt.sh -d public/api/app-config-1.0.0.png /tmp/config.json</code></li>
           <li>编辑 <code>/tmp/config.json</code>，修改 <code>"underReview"</code> 为 <code>true</code>（送审中）或 <code>false</code>（已上线）</li>
-          <li>重新加密：<code>./scripts/encrypt.sh /tmp/config.json public/api/app-config.png</code></li>
+          <li>重新加密：<code>./scripts/encrypt.sh /tmp/config.json public/api/app-config-1.0.0.png</code></li>
           <li>提交并推送代码，ESA 自动部署后生效</li>
         </ol>
       </div>
