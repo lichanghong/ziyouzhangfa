@@ -22,7 +22,7 @@ lerna-debug.log*
 .fleet
 .idea
 
-# 加密脚本（内含 AES 密钥，仅保留在本地，严禁提交）
+# 加密脚本已迁移至 iOS 工程 ZiYouZhangFa/encrypt.sh（含 AES 密钥，随其私有仓库管理），严禁出现在本仓库
 scripts/encrypt.sh
 
 # Local env files

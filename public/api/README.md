@@ -24,13 +24,13 @@ https://bishun.hehuoya.com/api/app-config-{version}.png
 ## 发布流程
 
 1. 创建新版本配置 JSON
-2. 加密：`./scripts/encrypt.sh /tmp/config-{version}.json public/api/app-config-{version}.png`
+2. 加密（脚本位于 iOS 工程，在 website 仓库目录下执行）：`../ZiYouZhangFa/encrypt.sh /tmp/config-{version}.json public/api/app-config-{version}.png`
 3. `git push`，ESA 自动部署
 
 ## 密钥管理
 
-- 加密脚本 `scripts/encrypt.sh` 内含 AES-256-CBC 密钥，已被 `.gitignore` 排除，**仅存在于本地，严禁提交或外传**
-- iOS App（ZiYouZhangFa 工程 `ZYFAppConfigService.m` 中的 `kAESKey`/`kAESIV` 字节数组）与脚本内密钥保持一致
+- 加密脚本位于 iOS 工程根目录 `ZiYouZhangFa/encrypt.sh`，内含 AES-256-CBC 密钥，随该 gitee 私有仓库提交（仓库已设访问权限），**严禁复制到本仓库或任何公开位置**
+- iOS App（`ZYFAppConfigService.m` 中的 `kAESKey`/`kAESIV` 字节数组）与脚本内密钥保持一致
 - 轮换密钥：脚本和 iOS 端同步改为新密钥，并重新加密 `public/api/` 下所有配置文件
 - 生成新密钥：`openssl rand -hex 32`（KEY）/ `openssl rand -hex 16`（IV）
 
