@@ -5,6 +5,7 @@
       <FeaturesSection />
       <VipSection />
       <DownloadSection />
+      <AdBanner />
     </main>
   </div>
 </template>
