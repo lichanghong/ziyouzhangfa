@@ -12,7 +12,6 @@
       <span class="logo-text">生字笔顺</span>
     </a>
     <div class="nav-links">
-      <a href="#demo">动态笔顺</a>
       <a href="#features">功能</a>
       <a href="#vip">会员</a>
       <a href="#download">下载</a>

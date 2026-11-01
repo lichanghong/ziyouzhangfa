@@ -2,7 +2,6 @@
   <div>
     <HeroSection />
     <main>
-      <StrokeDemo />
       <FeaturesSection />
       <VipSection />
       <DownloadSection />
