@@ -21,14 +21,7 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { name: 'theme-color', content: '#F7F2E8' }
       ],
-      link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
-      script: [
-        {
-          src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387872276467622',
-          async: true,
-          crossorigin: 'anonymous'
-        }
-      ]
+      link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]
     }
   },
   css: ['~/assets/css/main.css']
