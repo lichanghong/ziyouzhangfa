@@ -9,5 +9,9 @@
         style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"
       ><img src="https://www.beian.gov.cn/file/ghs.png" style="float:left;" alt=""> 豫公网安备 41148102000200号</a>
     </div>
+    <div class="footer-links">
+      <a href="/privacy">隐私政策</a>
+      <a href="/sdk-list">第三方信息共享清单</a>
+    </div>
   </footer>
 </template>
