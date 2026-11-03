@@ -235,6 +235,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+  layout: 'plain'
+})
+
 useHead({
   title: '隐私政策 - 生字笔顺',
   meta: [

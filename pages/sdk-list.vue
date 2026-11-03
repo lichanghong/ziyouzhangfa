@@ -54,6 +54,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+  layout: 'plain'
+})
+
 useHead({
   title: '第三方信息共享清单 - 生字笔顺',
   meta: [
