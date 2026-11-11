@@ -5,7 +5,7 @@
       <h1>一笔一画，<br>皆有章法</h1>
       <p class="hero-sub">「生字笔顺」把动态笔顺、描红练习、课文听写和错字本装进一个 App——不只认识字，更能写好字。</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#download">App Store 下载</a>
+        <a class="btn btn-primary" href="https://apps.apple.com/cn/app/%E7%94%9F%E5%AD%97%E7%AC%94%E9%A1%BA/id6829591837" target="_blank" rel="noopener">App Store 下载</a>
       </div>
       <ul class="hero-stats">
         <li><strong>9000+</strong><span>汉字动态笔顺</span></li>

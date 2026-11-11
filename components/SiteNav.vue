@@ -16,6 +16,6 @@
       <a href="#vip">会员</a>
       <a href="#download">下载</a>
     </div>
-    <a class="btn btn-primary btn-sm" href="#download">App Store</a>
+    <a class="btn btn-primary btn-sm" href="https://apps.apple.com/cn/app/%E7%94%9F%E5%AD%97%E7%AC%94%E9%A1%BA/id6829591837" target="_blank" rel="noopener">App Store</a>
   </nav>
 </template>

@@ -1,0 +1,26 @@
+# 生字笔顺官网 robots.txt
+# https://bishun.hehuoya.com
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# 允许所有搜索引擎抓取
+User-agent: Googlebot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+# Sitemap 位置
+Sitemap: https://bishun.hehuoya.com/sitemap.xml
