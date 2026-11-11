@@ -4,6 +4,7 @@
     <main>
       <FeaturesSection />
       <VipSection />
+      <FaqSection />
       <DownloadSection />
       <AdBanner />
     </main>

@@ -22,5 +22,21 @@ Allow: /
 User-agent: Sogou web spider
 Allow: /
 
+# 允许 AI 爬虫抓取（GEO 优化）
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
 # Sitemap 位置
 Sitemap: https://bishun.hehuoya.com/sitemap.xml
