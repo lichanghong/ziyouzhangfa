@@ -34,12 +34,17 @@ export default defineNuxtConfig({
         { property: 'og:locale', content: 'zh_CN' },
         { property: 'og:site_name', content: '生字笔顺' },
         { property: 'og:url', content: 'https://bishun.hehuoya.com' },
+        { property: 'og:image', content: 'https://bishun.hehuoya.com/og.png' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: '生字笔顺 — 一笔一画，皆有章法' },
         {
           name: 'twitter:description',
           content: '动态笔顺 · 三段式描红 · 课文听写 · 错字本 · 拼音学习，让孩子不只认识字，更能写好字。'
-        }
+        },
+        { name: 'twitter:image', content: 'https://bishun.hehuoya.com/og.png' },
+        { name: 'apple-itunes-app', content: 'app-id=6829591837, app-argument=https://bishun.hehuoya.com' }
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },

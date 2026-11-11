@@ -244,6 +244,9 @@ useHead({
   meta: [
     { name: 'description', content: '生字笔顺隐私政策，说明我们如何收集、使用和保护您和孩子的个人信息。数据仅存本机，不上传服务器。' },
     { name: 'robots', content: 'noindex, follow' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://bishun.hehuoya.com/privacy' }
   ]
 })
 </script>

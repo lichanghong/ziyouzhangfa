@@ -63,6 +63,9 @@ useHead({
   meta: [
     { name: 'description', content: '生字笔顺第三方信息共享清单，列明我们向第三方传输的信息类型和目的。数据仅存本机，不上传服务器。' },
     { name: 'robots', content: 'noindex, follow' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://bishun.hehuoya.com/sdk-list' }
   ]
 })
 </script>
